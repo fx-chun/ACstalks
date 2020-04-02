@@ -47,7 +47,7 @@ function query(method, url, data, callback)
 
 function isLoggedIn()
 {
-    return (document.cookie.indexOf('_token=') > 0);
+    return (document.cookie.indexOf('_token=') >= 0);
 }
 
 function login(username, password, fail, redirect)
