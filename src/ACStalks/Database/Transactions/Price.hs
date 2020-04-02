@@ -42,7 +42,6 @@ deletePriceByUid dbc@(SqlConnection {}) uid =
     " WHERE UserID = ?") [ toSql $ uid ]
 
 
-
 getPriceByUid :: DatabaseConnection -> Int -> IO (Maybe Price)
 getPriceByUid dbc@(SqlConnection {}) uid =
     do
@@ -84,7 +83,7 @@ LIMIT #{n}
 
  
 insertPrice :: DatabaseConnection -> Price -> IO (Status)
-insertPrice dbc@(SqlConnection {}) p =
+insertPrice dbc@(SqlConnection {}) p = validatePrice p $
     do
         rows <- sqlExec dbc
                 (  "INSERT INTO " ++ table ++ "    \
