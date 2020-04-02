@@ -79,7 +79,7 @@ updateUser dbc@(SqlConnection {}) user =
                   \       FavVillager = ?,        \
                   \       FavThing = ?            \
                   \ WHERE UserID = ?;   ")
-                [ toSql $ userName user
+                [ toSql $ T.toLower $ userName user
                 , toSql $ userNickname user
                 , toSql $ userPasshash user
                 , toSql $ userSecurityAnswer user

@@ -50,7 +50,7 @@ searchHotItems dbc@(SqlConnection {}) str =
                     \ WHERE HotItem LIKE ?                      \
                     \ GROUP BY UserId                           \
                     \ ORDER BY HotItemTime                      \
-                    \ LIMIT 10;") [ toSql $ T.pack . (\x -> "%" ++ x ++ "%") . T.unpack $ str ]
+                    \ LIMIT 10;") [ toSql $ T.pack . (\x -> "%" ++ x ++ "%") . T.unpack $ T.toLower str ]
         return (map hotItemConstructor results) 
 
 getNRandomHotItems :: DatabaseConnection -> Int -> IO ([HotItem])
@@ -75,7 +75,7 @@ insertHotItem dbc@(SqlConnection {}) h =
                   \  HotItemTime,                  \
                   \  HotItemTimezone,              \
                   \  UserID) VALUES (NULL,?,?,?,?);")
-                [ toSql $ hotItem h 
+                [ toSql $ T.toLower $ hotItem h 
                 , toSql $ hotItemTime h
                 , toSql $ Time.timeZoneOffsetString $ hotItemTimezone h
                 , toSql $ hotItemUserId h ]
