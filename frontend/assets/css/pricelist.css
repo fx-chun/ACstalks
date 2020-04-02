@@ -2,11 +2,10 @@ div.pricelist {
     position: relative;
     background: #7a9fd6;
     border-radius: 50px;
-    margin: 10px;
+    margin: 10px 0px 10px 0px;
     padding: 20px 20px 10px 20px;
     text-align: center;
     width: calc(100% - 60px);
-    max-width: 650px;
     height: 500px;
 }
 
