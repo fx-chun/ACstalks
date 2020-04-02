@@ -77,7 +77,7 @@ userServer dbc = login :<|> register :<|> search
                 now <- Time.getCurrentTime
                 hash <- hashPassword' (regPassword req)
                 
-                let newUser = User { userName           = T.toLower $ regUsername req
+                let newUser = User { userName           = regUsername req
                                    , userNickname       = regNickname req
                                    , userPasshash       = hash 
                                    , userSecurityAnswer = T.pack ""
@@ -112,7 +112,7 @@ userServer dbc = login :<|> register :<|> search
             where
                 stripUser usr =
                     ResponseUserSearch { searchId = userId usr
-                                       , searchUserName = T.toLower $ userName usr
+                                       , searchUserName = userName usr
                                        , searchNickname = userNickname usr
                                        , searchSwitchFc = userSwitchFc usr
                                        , searchDodoCode = userDodoCode usr

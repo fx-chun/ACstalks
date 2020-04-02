@@ -28,6 +28,13 @@ priceConstructor p = Price { priceId             = fromSql $ (p !! 0)
                            , priceUserId         = fromSql $ (p !! 4)
                            }
 
+validatePrice :: Price -> IO (Status) -> IO (Status)
+validatePrice p valid = 
+    if      (price p < 0) then return (Failure "negative price")
+    else if (price p > 9999) then return (Failure "price max reached")
+    else valid
+
+
 getPriceByUid :: DatabaseConnection -> Int -> IO (Maybe Price)
 getPriceByUid dbc@(SqlConnection {}) uid =
     do

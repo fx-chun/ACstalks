@@ -9,6 +9,7 @@ module ACStalks.Database.Transactions.User (
 import ACStalks.Schema.User
 import ACStalks.Database.Transactions.Utils
 import ACStalks.Database.DatabaseConnection
+import qualified Data.Char as C
 import qualified Data.Text as T
 import Database.HDBC
 
@@ -25,6 +26,12 @@ userConstructor user = User { userName            = fromSql $ (user !! 0)
                             , userBio             = fromSql $ (user !! 8)
                             , userFavVillager     = fromSql $ (user !! 9)
                             , userFavThing        = fromSql $ (user !! 10)  }
+
+validateUser :: User -> IO (Status) -> IO (Status)
+validateUser user valid =     
+    if (T.length $ userName user) < 0 then return (Failure "username is empty")
+    else if not $ 0 == length (map C.isAlphaNum $ T.unpack $ userName user) then return (Failure "username is not alphanum")
+    else valid
 
 getUser :: DatabaseConnection -> Int -> IO (Maybe User)
 getUser dbc@(SqlConnection {}) uid =
@@ -63,7 +70,7 @@ getUserByUsername dbc@(SqlConnection {}) username =
         
 
 updateUser :: DatabaseConnection -> User -> IO (Status)
-updateUser dbc@(SqlConnection {}) user =
+updateUser dbc@(SqlConnection {}) user = validateUser user $
     do
         rows <- sqlExec dbc
                 (  "UPDATE " ++ table ++ "        \
@@ -111,7 +118,7 @@ deleteUser dbc@(SqlConnection {}) usr =
 
 
 insertUser :: DatabaseConnection -> User -> IO (Status)
-insertUser dbc@(SqlConnection {}) user =
+insertUser dbc@(SqlConnection {}) user = validateUser user $
     do
         existing <- getUserByUsername dbc (userName user)
         
