@@ -16,6 +16,10 @@ extra-deps:
 - HDBC-sqlite3-2.3.3.1@sha256:5025fd94d02b9b3f0b8b8233796dd9a85a0b3dda6503c6e671e3eddbc51cb4d4,2424
 - datetime-0.3.1@sha256:7e275bd0ce7a2f66445bedfa0006abaf4d41af4c2204c3f8004c17eab5480e74,1534
 
+nix:
+  enable: true
+  packages: [ ncurses zlib sqlite postgresql ]
+
 # Override default flag values for local packages and extra-deps
 # flags: {}
 
