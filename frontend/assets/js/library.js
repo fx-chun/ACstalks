@@ -56,7 +56,7 @@ function login(username, password, fail, redirect)
         function (maybeToken) {
             if (maybeToken.loginToken)
             {
-                document.cookie = "_token=" + maybeToken.loginToken;
+                document.cookie = "_token=" + maybeToken.loginToken + ";path=/;";
                 document.cookie = "_userId=" + maybeToken.loginUserId;
                 if (redirect) { window.location.href = redirect 
                 } else { location.reload(); }
@@ -68,7 +68,7 @@ function login(username, password, fail, redirect)
 
 function logout()
 {
-    document.cookie="_token= ; expires=" + (new Date().toString());
+    document.cookie="_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;";
     location.reload();
 }
 
