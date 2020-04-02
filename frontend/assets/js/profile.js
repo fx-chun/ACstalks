@@ -75,4 +75,5 @@ if (urlParams.has("id")) {
     populateProfile(parseInt(urlParams.get("id")));
 } else {
     populateProfile(parseInt(getCookie("_userId")));
+    window.history.pushState("", "", '/profile.html?id=' + getCookie("_userId"));
 }
