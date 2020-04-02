@@ -14,17 +14,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="/assets/js/library.js"></script>
  
-        <header>
+        <div id="header">
             <h1><a href="/"><img src="/assets/svg/logo.svg" height="70px"/></a></h1>
-            <span class="template links logged_in">
+            <div class="template links logged_in" >
                 <div>Welcome, <span class = "my_nickname"></span></div>
                 <a href="/profile.html">Profile</a>
                 <a href="/settings.html">Settings</a>
                 <a href="javascript:logout();">Logout</a>
-            </span>
-            <span class="template links logged_out">
-            </span>
-        </header>
+            </div>
+            <div class="template links logged_out">
+            </div>
+       </div>
         
         <main>
            {% include pricelist.html %}
