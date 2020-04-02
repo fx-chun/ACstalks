@@ -1,0 +1,165 @@
+---
+layout: default
+---
+
+<header>
+    <span>
+        <img class="invert" src="/assets/svg/turnip.svg" />
+        Turnip Pricing 
+        <img src="/assets/svg/turnip.svg" />
+    </span>
+</header>
+
+<style>
+
+#prices_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+#main_pricelist {
+    flex-grow: 1;
+    flex-basis: 400px;
+}
+
+#sidebar_container {
+    margin: 0px auto 0px auto;
+}
+
+#dodoCodeDialog label {
+    font-size: 15px;
+}
+
+</style>
+
+<div id="prices_container">
+    <div id="main_pricelist"></div>
+    <div id="sidebar_container">
+        <div id="priceDialog" class="template dialog logged_in" style="height: 250px">
+            <span>Price Update</span>
+            <div>
+                <form onsubmit="return false;" id="priceUpdate">
+                    <label for="price">Turnip Price:</label>
+                    <input id="priceUpdate_price" class="my_price_input" type="number" max="9999"></input>
+                    <div style="text-align: center; margin: 0px 0px 10px 0px;">
+                        <input type="submit" onclick="javascript:updatePrice(parseInt($('#priceUpdate_price').val()));" value="Update Price"></input><br/>
+                        <span class="nostale nostale_item nostale_text">Your price is stale (needs update).</span>
+                        <hr/>
+                        <b style="font-family: Arial; font-size: 14px;">LOCAL MARKET STATUS</b><br/>
+                        <span id="indicator_buy" class="localMarketStatus">BUY</span>
+                        <span id="indicator_sell" class="localMarketStatus">SELL</span>
+                        <span id="indicator_closed" class="localMarketStatus">CLOSED</span>
+                        <br/>
+                        <label style="display: none;" for="currentTime">Current Time</label>
+                        <input class="currentTime" style="margin: 10px 0px 10px 0px;" type="textbox" disabled></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="dodoCodeDialog" class="template dialog logged_in" style="height: 270px">
+            <span>Island Settings</span>
+            <div>
+                <form onsubmit="return false;">
+                    <p style="margin-bottom: 5px;">My island is currently...</p>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', false);" name="islandOpenSelector" id="island_open" value="IslandOpen">
+                    <label for="island_open">Open to the public!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_friends" value="IslandFriends">
+                    <label for="island_friends">Open to friends!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_seebio" value="IslandSeeBio">
+                    <label for="island_seebio">Open, but check my bio!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_closed" value="IslandClosed">
+                    <label for="island_closed">Closed</label>
+                    <hr/>
+                    Dodo Code: <input type="text" maxlength="5" class="my_dodocode_input" id="island_dodocode"></input>
+                    <br/>
+                    <div style="text-align: center;">
+                        <input type="submit" onclick="updateIslandSettingsFromUi();" value="Update Settings"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="loginDialog" class="template dialog logged_out" style="height: 210px">
+            <span>Login</span>
+            <div>
+                <form onsubmit="return false;" style="text-align: center;">
+                    <label for="login_username">Username:</label>
+                    <input type="text" id="login_username"></input>
+                    <br/> <br/>
+                    <label for="login_password">Password:</label>
+                    <input type="password" id="login_password"></input>
+                    <br/><br/>
+                    <input type="submit" onclick="login($('#login_username').val(), $('#login_password').val(), () => $('#login_error').text('Login failed (incorrect password?)') );" value="Login"></input>
+                    <button onclick="window.location.href='/register.html'">Register</button>
+                    <br/>
+                    <span id="login_error" style="font-size: 10px; color: red;"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+
+<header>
+    <span >
+        <img src="/assets/svg/item.svg" />
+        Hot Items 
+        <img class="invert" src="/assets/svg/item.svg" />
+    </span>
+</header>
+
+<style>
+#hotitems_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#main_hotlist {
+    flex-grow: 1;
+    flex-basis: 400px;
+    height: %;
+}
+
+#sidebar2_container {
+    margin: auto;
+}
+</style>
+
+<div id="hotitems_container">
+    <div id="main_hotlist"></div>
+    <div id="sidebar2_container">
+        <div class="dialog" style="height: 120px;"> 
+            <span>Item Update</span>
+            <div>
+                <form onsubmit="return false;">
+                    <label for="item_name">Item Name:</label>
+                    <input class="my_item_input" type="text" id="item_name"></input>
+                    <div style="text-align: center">
+                        <input type="submit" value="Update Item" onclick="updateItem($('#item_name').val());"></input><br/>
+                        <span class="nostale nostale_item nostale_text">Your item is stale (needs update).</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="dialog" style="height: 100px;">
+            <span>Search</span>
+            <div>
+                <form onsubmit="return false;" style="text-align: center">
+                    <label for="item_search_query" hidden>Search Query</label>
+                    <input id="item_search_query" type="text" style="width: 80%;"></input>
+                    <input type="submit" value="Search for Item" onclick="searchItem($('#item_search_query').val())" style="width: 80%;"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+<script src="/assets/js/main.js"></script>

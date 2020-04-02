@@ -1,0 +1,45 @@
+var priceListSortDesc = true;
+var hotItemSortAlpha = false;
+
+var priceList = createListUi( "Price List ", () => {
+    priceListSortDesc = !priceListSortDesc;
+    updatePriceUi(priceList, priceListSortDesc);
+});
+
+var hotItemList = createListUi( "Item List", () => {
+    hotItemSortAlpha = !hotItemSortAlpha;
+    if ($('#item_search_query').val())
+    {
+        searchItem($('#item_search_query').val(), hotItemSortAlpha); 
+    } else {
+        updateHotItemUi(hotItemList, hotItemSortAlpha);
+    }
+});
+
+priceList.appendTo("#main_pricelist");
+hotItemList.appendTo("#main_hotlist");
+
+function updateTimeLoop()
+{
+    var time = new Date();
+    var timeString = time.toString()
+
+    $(".currentTime").val(timeString);
+    $(".localMarketStatus").css("background-color", "#d1d1d1");
+
+    var hour = time.getHours();
+
+    if (time.getDay() == 0 && (hour > 6) && (hour < 12)) {
+        $("#indicator_buy").css("background-color", "#db5757");
+    } else if ((time.getDay() != 0) && (hour > 8) && (hour < 22)) {
+        $("#indicator_sell").css("background-color", "#339933");
+    } else {
+        $("#indicator_closed").css("background-color", "#5778db");
+    }
+
+}
+
+updatePriceUi(priceList, priceListSortDesc);
+updateHotItemUi(hotItemList, hotItemSortAlpha);
+updateTimeLoop();
+setInterval(updateTimeLoop, 1000);

@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<style>
+#registration_container {
+    background-color: #fffae4;
+    border-radius: 50px;
+    margin: 30px auto 0px auto;
+    padding: 30px;
+    color: #6a5639;
+    font-size: 20px;
+    width: 80%;
+}
+
+label {
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 200px;
+    padding-bottom: 10px;
+}
+</style>
+
+<header>
+    <span>Create an Account</span>
+</header>
+<div id="registration_container">
+    <form onsubmit="return false;" >
+        <label for="register_username">Username:</label><input id="register_username" required type="text" ></input>
+        <br/><br/>
+        <label for="register_nickname">Nickname:*</label><input id="register_nickname" required type="text" ></input>
+        <br/><br/>
+        <label for="register_password">Password:**</label><input id="register_password" required type="password" ></input>
+        <br/><br/>
+        <b>* You can change this later!</b><br/>
+        <b>** We do not collect your email; please choose a memorable password!</b>
+        <br/><br/>
+        <input id="agreement" type="checkbox"></input>
+        <span>
+            I have read and agree to the <a href="/toc.html">Terms and Conditions</a> and
+            the <a href="/rules.html">Rules</a>.
+        </span>
+        <br/><br/>
+
+        <script type="text/javascript">
+          var onloadCallback = function() {
+            grecaptcha.render('captcha', {
+              'sitekey' : '6LchuOUUAAAAAEj_7zcVr5Yv_3TXjr0evw4Fk2nU'
+            });
+          };
+        </script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+        </script>
+
+        <div id='captcha'></div>
+
+        <script src="assets/js/register.js"></script>
+        <div style="text-align: right; padding: 20px;">
+            <input type="submit" onclick="javascript:submitRegistration();" value="Register"></input>
+        </div>
+    </form>
+</div>
+

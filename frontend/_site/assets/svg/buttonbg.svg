@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="63.115158mm"
+   height="8.8563204mm"
+   viewBox="0 0 63.115156 8.856321"
+   version="1.1"
+   id="svg8382"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   preserveAspectRatio="none"
+   sodipodi:docname="buttonbg.svg">
+  <defs
+     id="defs8376" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="99.981945"
+     inkscape:cy="-143.45986"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="397"
+     inkscape:window-height="1029"
+     inkscape:window-x="1519"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata8379">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-10.13822,-17.897606)">
+    <rect
+       style="clip-rule:evenodd;fill:#fcd929;fill-rule:evenodd;stroke-width:0.02840221;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect6935"
+       ry="2.5382793"
+       rx="6.3818927"
+       height="5.0765586"
+       width="63.115158"
+       y="21.677368"
+       x="10.13822"
+       class="fil23" />
+  </g>
+</svg>

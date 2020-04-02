@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+<header>
+    <span>Settings and Profile</span>
+</header>
+
+<style>
+#settings_container {
+    background-color: #fffcdf;
+    width: 80%;
+    margin: 10px auto 10px auto;
+    border-radius: 50px;
+    color: #6a5639;
+    font-size: 20px;
+    padding: 30px;
+}
+
+label {
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 200px;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+</style>
+
+<div style="text-align: left;">
+    <div id="settings_container">
+        <form onsubmit="return false;">
+            <label for="settings_nickname">Nickname:</label><input class="my_nickname_input" id="settings_nickname" type="text" ></input>
+            <br/><br/>
+
+            <label for="settings_password" style="padding-right: 53px;">New Password:</label><input id="settings_password" type="password" ></input>
+            <br/>
+            <label for="settings_password_confirm">Confirm Password:</label><input id="settings_password_confirm" type="password" ></input>
+            <br/><br/>
+
+            <label for="settings_switchfc">Switch Friend Code:</label><input class="my_switchfc_input" maxlength="17" id="settings_switchfc" type="text" ></input>
+            <br/><br/>
+
+            <label for="ac-select">Favorite Villager: </label>{% include ACVillagerListFinal.html %}
+            <br/>
+            <label for="ac-select-2">Favorite Thing to Do: </label>{% include FavThingToDoListFinal.html %}
+
+            <br/><br/>
+
+            <label for="settings_bio">Bio:</label><br/>
+            <textarea cols='80' rows='16' class="my_bio_input" id="settings_bio"> </textarea>
+
+            <div style="text-align: right;">
+                <input onclick="saveSettings();" type="submit" value="Save Changes"></input>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/assets/js/settings.js"></script>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ACstalks.com</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/default.css">
+        <link rel="stylesheet" href="/assets/css/pricelist.css">
+        <link rel="stylesheet" href="/assets/css/dialog.css">
+   </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="/assets/js/library.js"></script>
+ 
+        <header>
+            <h1><a href="/"><img src="/assets/svg/logo.svg" height="70px"/></a></h1>
+            <span class="template links logged_in">
+                <div>Welcome, <span class = "my_nickname"></span></div>
+                <a href="/profile.html">Profile</a>
+                <a href="/settings.html">Settings</a>
+                <a href="javascript:logout();">Logout</a>
+            </span>
+            <span class="template links logged_out">
+            </span>
+        </header>
+        
+        <main>
+           <div id="pricelist" class="pricelist template" >
+    <h1></h1>
+    <a class="sort_button" href="javascript:void(0)"></a>
+    <div class="pricelist_tablecontainer">
+        <table>
+            <tr id="price" class="template">
+                <td style="text-align: center; width: 110px">
+                    <span class="islandopen_label">OPEN</span>
+                    <br/>
+                    <span class="market_status_label">BUYING</span><br/>
+                    <img src="/assets/svg/bells.svg" style="height: 17px;" />
+                    <span class="bells_label">999</span>
+                </td>
+                <td class="dodocode_label">DDR34</td>
+                <td ><a class="nickname_label"href=""></a></td>
+            </tr>
+            <tr id="item" class="item_row template">
+                <td style="text-align: left; padding-left: 20px;">
+                    <img src="/assets/svg/item.svg" style="height: 24px; transform: translate(-5px, 5px);" />
+                    <span class="item_label">gimme ur turnip prices nerd</span>
+                </td>
+                <td ><a class="nickname_label"href="">Kakunaman</a></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+           <header>
+    <span>
+        <img class="invert" src="/assets/svg/turnip.svg" />
+        Turnip Pricing 
+        <img src="/assets/svg/turnip.svg" />
+    </span>
+</header>
+
+<style>
+
+#prices_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+#main_pricelist {
+    flex-grow: 1;
+    flex-basis: 400px;
+}
+
+#sidebar_container {
+    margin: 0px auto 0px auto;
+}
+
+#dodoCodeDialog label {
+    font-size: 15px;
+}
+
+</style>
+
+<div id="prices_container">
+    <div id="main_pricelist"></div>
+    <div id="sidebar_container">
+        <div id="priceDialog" class="template dialog logged_in" style="height: 250px">
+            <span>Price Update</span>
+            <div>
+                <form onsubmit="return false;" id="priceUpdate">
+                    <label for="price">Turnip Price:</label>
+                    <input id="priceUpdate_price" class="my_price_input" type="number" max="9999"></input>
+                    <div style="text-align: center; margin: 0px 0px 10px 0px;">
+                        <input type="submit" onclick="javascript:updatePrice(parseInt($('#priceUpdate_price').val()));" value="Update Price"></input><br/>
+                        <span class="nostale nostale_item nostale_text">Your price is stale (needs update).</span>
+                        <hr/>
+                        <b style="font-family: Arial; font-size: 14px;">LOCAL MARKET STATUS</b><br/>
+                        <span id="indicator_buy" class="localMarketStatus">BUY</span>
+                        <span id="indicator_sell" class="localMarketStatus">SELL</span>
+                        <span id="indicator_closed" class="localMarketStatus">CLOSED</span>
+                        <br/>
+                        <label style="display: none;" for="currentTime">Current Time</label>
+                        <input class="currentTime" style="margin: 10px 0px 10px 0px;" type="textbox" disabled></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="dodoCodeDialog" class="template dialog logged_in" style="height: 270px">
+            <span>Island Settings</span>
+            <div>
+                <form onsubmit="return false;">
+                    <p style="margin-bottom: 5px;">My island is currently...</p>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', false);" name="islandOpenSelector" id="island_open" value="IslandOpen">
+                    <label for="island_open">Open to the public!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_friends" value="IslandFriends">
+                    <label for="island_friends">Open to friends!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_seebio" value="IslandSeeBio">
+                    <label for="island_seebio">Open, but check my bio!</label><br/>
+                    <input type="radio" onclick="javascript:$('#island_dodocode').prop('disabled', true);" name="islandOpenSelector" id="island_closed" value="IslandClosed">
+                    <label for="island_closed">Closed</label>
+                    <hr/>
+                    Dodo Code: <input type="text" maxlength="5" class="my_dodocode_input" id="island_dodocode"></input>
+                    <br/>
+                    <div style="text-align: center;">
+                        <input type="submit" onclick="updateIslandSettingsFromUi();" value="Update Settings"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="loginDialog" class="template dialog logged_out" style="height: 210px">
+            <span>Login</span>
+            <div>
+                <form onsubmit="return false;" style="text-align: center;">
+                    <label for="login_username">Username:</label>
+                    <input type="text" id="login_username"></input>
+                    <br/> <br/>
+                    <label for="login_password">Password:</label>
+                    <input type="password" id="login_password"></input>
+                    <br/><br/>
+                    <input type="submit" onclick="login($('#login_username').val(), $('#login_password').val(), () => $('#login_error').text('Login failed (incorrect password?)') );" value="Login"></input>
+                    <button onclick="window.location.href='/register.html'">Register</button>
+                    <br/>
+                    <span id="login_error" style="font-size: 10px; color: red;"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+
+<header>
+    <span >
+        <img src="/assets/svg/item.svg" />
+        Hot Items 
+        <img class="invert" src="/assets/svg/item.svg" />
+    </span>
+</header>
+
+<style>
+#hotitems_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#main_hotlist {
+    flex-grow: 1;
+    flex-basis: 400px;
+    height: %;
+}
+
+#sidebar2_container {
+    margin: auto;
+}
+</style>
+
+<div id="hotitems_container">
+    <div id="main_hotlist"></div>
+    <div id="sidebar2_container">
+        <div class="dialog" style="height: 120px;"> 
+            <span>Item Update</span>
+            <div>
+                <form onsubmit="return false;">
+                    <label for="item_name">Item Name:</label>
+                    <input class="my_item_input" type="text" id="item_name"></input>
+                    <div style="text-align: center">
+                        <input type="submit" value="Update Item" onclick="updateItem($('#item_name').val());"></input><br/>
+                        <span class="nostale nostale_item nostale_text">Your item is stale (needs update).</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="dialog" style="height: 100px;">
+            <span>Search</span>
+            <div>
+                <form onsubmit="return false;" style="text-align: center">
+                    <label for="item_search_query" hidden>Search Query</label>
+                    <input id="item_search_query" type="text" style="width: 80%;"></input>
+                    <input type="submit" value="Search for Item" onclick="searchItem($('#item_search_query').val())" style="width: 80%;"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+<script src="/assets/js/main.js"></script>
+
+        </main>
+
+        <footer>
+            <div>
+                <a href="/toc.html">Terms and Conditions</a>
+                <a href="/rules.html">Rules</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+            <div>
+                Thank you for using ACstalks.com!<br/>
+                By <a href="https://twitter.com/jennipuff">@jennipuff</a> and &nbsp;  <a href="https://twitter.com/noneucat">@noneucat</a>
+                <br/><br/>
+
+                If you have any questions, concerns, or anything to suggest for
+                the website please email us here: dev@acstalks.com and we will read your email as soon as we are able!
+            </div>
+        </footer>
+
+       <script src="/assets/js/all.js"></script>
+    </body>
+</html>

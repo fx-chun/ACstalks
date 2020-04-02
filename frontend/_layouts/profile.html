@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<header>
+    <span class="profile_nickname">
+        User 
+    </span>
+</header>
+
+<style>
+
+#profile_container
+{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.dialog > div {
+   margin: 0px 30px 10px 30px;
+}
+
+.fav_field {
+    font-size: 16px;
+}
+
+.stale > .profile_price {
+    color: grey;
+    text-decoration: line-through;
+}
+
+.stale > .profile_hotitem {
+    color: grey;
+    text-decoration: line-through;
+}
+
+</style>
+
+<div id="profile_container">
+    <div class="dialog" style="height: auto">
+        <span>Bio</span>
+        <div class="profile_bio" style="white-space: pre-wrap; font-size: 16px; overflow-wrap: break-word; padding-bottom: 50px">
+        </div>
+    </div>
+
+    <div class="dialog" style="height: 260px;">
+        <span>Information</span>
+        <div style="">
+            <b>Favorite Villager:</b> <br/><span class="fav_field profile_favvillager"></span>
+            <br/><br/>
+            <b>Favorite Thing:</b> <br/><span class="fav_field profile_favthing"></span>
+            <br/><br/>
+            <b>Switch Friend Code:</b> <br/><span class="fav_field profile_switchfc"></span>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+        <div class="dialog" style="height: 150px;">
+            <span>Turnip Price</span>
+            <div id="price_container">
+                <img src="/assets/svg/bells.svg" style="height: 40px; transform: translate(0px, 5px)" />
+                <span class="profile_price" style="font-size: 40px;">n/a</span>
+                <br/>
+                <span style="font-size: 14px;">Last updated <span class="profile_price_time">never</span></span>
+            </div>
+        </div>
+
+        <div class="dialog" style="height: 150px;">
+            <span>Hot Item</span>
+            <div id="hotitem_container">
+                <span style="font-size:30px;" class="profile_hotitem">n/a</span>
+                <br/>
+                <span style="font-size: 14px;">Last updated <span class="profile_hotitem_time">never</span>
+            </div>
+        </div>
+    <div>
+</div>
+
+<script src="/assets/js/profile.js"></script>

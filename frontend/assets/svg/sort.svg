@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="17.625032mm"
+   height="17.567039mm"
+   viewBox="0 0 17.625032 17.56704"
+   version="1.1"
+   id="svg8382"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="sort.svg">
+  <defs
+     id="defs8376" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="43.915443"
+     inkscape:cy="-4.2466208"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="397"
+     inkscape:window-height="1029"
+     inkscape:window-x="1519"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata8379">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-27.430129,-21.353065)">
+    <path
+       style="clip-rule:evenodd;fill:#6c583c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02329231;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       inkscape:connector-curvature="0"
+       id="path8169"
+       d="m 33.852554,26.365176 c 0,-0.574854 0.199846,-1.59366 -0.525242,-1.535196 -0.356839,0.02865 -0.431607,0.245501 -0.436265,0.613985 -0.01794,1.420832 0.06848,6.266565 -0.0083,7.130011 -0.351248,0.03283 -1.527278,-0.0531 -1.724563,0.115756 -0.214988,0.184009 -0.101553,0.468408 0.03563,0.61282 l 1.224478,1.483023 c 0.562975,0.633551 0.84388,1.432245 1.411281,0.575553 l 1.45018,-2.028994 c 0.131599,-0.164444 0.333313,-0.363127 0.159086,-0.640771 -0.180749,-0.288127 -1.192101,-0.08967 -1.587836,-0.138587 l 0.0014,-6.187371 z"
+       class="fil39" />
+    <rect
+       style="clip-rule:evenodd;fill:#6c583c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02329231;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect8171"
+       ry="0.35287857"
+       rx="0.35287857"
+       height="0.70575714"
+       width="6.474565"
+       y="25.401575"
+       x="34.589279"
+       class="fil39" />
+    <rect
+       style="clip-rule:evenodd;fill:#6c583c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02329231;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect8173"
+       ry="0.35287857"
+       rx="0.40295705"
+       height="0.70575714"
+       width="7.392282"
+       y="27.281261"
+       x="34.589279"
+       class="fil39" />
+    <rect
+       style="clip-rule:evenodd;fill:#6c583c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02329231;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect8175"
+       ry="0.35287857"
+       rx="0.40295705"
+       height="0.70575714"
+       width="7.392282"
+       y="29.191465"
+       x="34.589279"
+       class="fil39" />
+    <rect
+       style="clip-rule:evenodd;fill:#6c583c;fill-opacity:1;fill-rule:evenodd;stroke-width:0.02329231;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="rect8177"
+       ry="0.35287857"
+       rx="0.40295705"
+       height="0.70575714"
+       width="7.392282"
+       y="31.147556"
+       x="34.589279"
+       class="fil39" />
+  </g>
+</svg>

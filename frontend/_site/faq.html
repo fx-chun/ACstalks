@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ACstalks.com</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/default.css">
+        <link rel="stylesheet" href="/assets/css/pricelist.css">
+        <link rel="stylesheet" href="/assets/css/dialog.css">
+   </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="/assets/js/library.js"></script>
+ 
+        <header>
+            <h1><a href="/"><img src="/assets/svg/logo.svg" height="70px"/></a></h1>
+            <span class="template links logged_in">
+                <div>Welcome, <span class = "my_nickname"></span></div>
+                <a href="/profile.html">Profile</a>
+                <a href="/settings.html">Settings</a>
+                <a href="javascript:logout();">Logout</a>
+            </span>
+            <span class="template links logged_out">
+            </span>
+        </header>
+        
+        <main>
+           <div id="pricelist" class="pricelist template" >
+    <h1></h1>
+    <a class="sort_button" href="javascript:void(0)"></a>
+    <div class="pricelist_tablecontainer">
+        <table>
+            <tr id="price" class="template">
+                <td style="text-align: center; width: 110px">
+                    <span class="islandopen_label">OPEN</span>
+                    <br/>
+                    <span class="market_status_label">BUYING</span><br/>
+                    <img src="/assets/svg/bells.svg" style="height: 17px;" />
+                    <span class="bells_label">999</span>
+                </td>
+                <td class="dodocode_label">DDR34</td>
+                <td ><a class="nickname_label"href=""></a></td>
+            </tr>
+            <tr id="item" class="item_row template">
+                <td style="text-align: left; padding-left: 20px;">
+                    <img src="/assets/svg/item.svg" style="height: 24px; transform: translate(-5px, 5px);" />
+                    <span class="item_label">gimme ur turnip prices nerd</span>
+                </td>
+                <td ><a class="nickname_label"href="">Kakunaman</a></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+           <style>
+#container {
+    background-color: #fffcdf;
+    color: #6c573c;
+    padding: 30px;
+    border-radius: 50px;
+    margin: 20px;
+}
+
+</style>
+
+<header>
+    <span>FAQ</span>
+</header>
+
+<div id="container">
+    <style> 
+.rcorners {
+  border-radius: 35px;
+  background: #799cd8;
+  font-weight: 600;
+  color: #FFFFFF;
+margin: 20px 0 8px;
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-bottom: 8px;
+    margin-left: 0px;
+  padding: 8px 12px;
+    padding-top: 8px;
+    padding-right: 12px;
+    padding-bottom: 8px;
+    padding-left: 12px; 
+display: inline-block;
+}
+
+</style>
+
+<p class="rcorners">Why don't we sign up with email?</p>
+<p>Because we don't need it! We do not want to collect and store email addresses when
+it isn't necessary. We only want you to provide necessary data, which is providing a
+nickname, password, timezone, Nintendo Switch Friend Code, and your pricing data.</p>
+
+<p class="rcorners">I lost my password! Help!</p>
+<p>You will not be able to retrieve your password like you would on other websites
+because we do not collect an email address. If you need help retrieving your password
+please email us at 
+<a href="mailto:dev@acstalks.com?subject="Lost Password">dev@acstalks.com</a> and let us
+know that you need a password reset. Alternatively, you can create a new account and
+<a href="mailto:dev@acstalks.com?subject="Delete Abandoned Account">email us</a> to
+delete the abandoned account. You will need to provide the username for the account.</p>
+
+<p class="rcorners">Will you make changes/updates?</p>
+<p>We will do our best to continue updating the site as need, when we do make changes we
+plan to post the updates to the changes in our Discord server 
+<a href="https://discord.gg/epqw5mw">here</a> and check out the Updates channel! </p>
+
+<p class="rcorners">What does it mean when my price is stale?</p>
+<p>When your pricing goes stale it is because the website has determined that the price has 
+been updated in your local time. Turnips have price changes twice a day: once at 8AM your local 
+time and once again at 12PM your local time. Turnips are not sellable on Sundays all day since 
+that is the day Daisy Mae comes to sell to you. To make your price no longer stale, please 
+check your game and update it with the proper pricing.</p>
+
+    
+</div>
+
+        </main>
+
+        <footer>
+            <div>
+                <a href="/toc.html">Terms and Conditions</a>
+                <a href="/rules.html">Rules</a>
+                <a href="/faq.html">FAQ</a>
+            </div>
+            <div>
+                Thank you for using ACstalks.com!<br/>
+                By <a href="https://twitter.com/jennipuff">@jennipuff</a> and &nbsp;  <a href="https://twitter.com/noneucat">@noneucat</a>
+                <br/><br/>
+
+                If you have any questions, concerns, or anything to suggest for
+                the website please email us here: dev@acstalks.com and we will read your email as soon as we are able!
+            </div>
+        </footer>
+
+       <script src="/assets/js/all.js"></script>
+    </body>
+</html>
