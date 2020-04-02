@@ -227,16 +227,16 @@ function insertPriceIntoUi(listUi, p, nick, dodoCode, islandOpen, stale, userId,
 
     switch (islandOpen) {
         case "IslandOpen":
-            islandText = ["Open (Public)", "islandopen_open"];
+            islandText = ["Island Open", "islandopen_open"];
             break;
         case "IslandFriends":
-            islandText = ["Open (Friends)", "islandopen_friends"];
+            islandText = ["Friends Only", "islandopen_friends"];
             break;
         case "IslandSeeBio":
             islandText = ["See Profile", "islandopen_seebio"];
             break;
         case "IslandClosed":
-            islandText = ["Closed", "islandopen_closed"];
+            islandText = ["Island Closed", "islandopen_closed"];
             break;
     }
 
