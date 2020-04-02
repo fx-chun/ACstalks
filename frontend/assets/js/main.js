@@ -21,17 +21,19 @@ hotItemList.appendTo("#main_hotlist");
 
 function updateTimeLoop()
 {
-    var time = new Date();
-    var timeString = time.toString()
+    var time = moment();
+    var timeString = time.format(""); 
 
     $(".currentTime").val(timeString);
     $(".localMarketStatus").css("background-color", "#d1d1d1");
 
-    var hour = time.getHours();
+    var hour = time.hour();
 
-    if (time.getDay() == 0 && (hour > 6) && (hour < 12)) {
+    console.log(hour);
+
+    if (time.day() == 0 && (hour >= 6) && (hour <= 12)) {
         $("#indicator_buy").css("background-color", "#db5757");
-    } else if ((time.getDay() != 0) && (hour > 8) && (hour < 22)) {
+    } else if (time.day() != 0 && (hour >= 8) && (hour <= 22)) {
         $("#indicator_sell").css("background-color", "#339933");
     } else {
         $("#indicator_closed").css("background-color", "#5778db");
