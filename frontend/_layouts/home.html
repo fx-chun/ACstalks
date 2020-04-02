@@ -121,7 +121,7 @@ layout: default
                     <label for="login_password">Password:</label>
                     <input type="password" id="login_password"></input>
                     <br/><br/>
-                    <input type="submit" onclick="login($('#login_username').val(), $('#login_password').val(), () => $('#login_error').text('Login failed (incorrect password?)') );" value="Login"></input>
+                    <input type="submit" onclick="login($('#login_username').val(), $('#login_password').val(), (err) => $('#login_error').text('Login failed ('+err+')') );" value="Login"></input>
                     <button onclick="window.location.href='/register.html'">Register</button>
                     <br/>
                     <span id="login_error" style="font-size: 10px; color: red;"></span>

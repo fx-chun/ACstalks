@@ -24,6 +24,7 @@ library
   other-modules:       ACStalks.API.RouteUser
                      , ACStalks.API.RouteMarket
                      , ACStalks.API.RouteHotItem
+                     , ACStalks.API.RouteAdmin
                      , ACStalks.Database.Connect
                      , ACStalks.Database.DatabaseConnection
                      , ACStalks.Database.SqlSettings

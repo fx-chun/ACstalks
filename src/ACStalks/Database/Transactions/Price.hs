@@ -1,6 +1,7 @@
 module ACStalks.Database.Transactions.Price (
     PriceSortOrder(..),
 
+    deletePriceByUid,
     insertPrice,
     getPriceByUid,
     getNPrices
@@ -33,6 +34,13 @@ validatePrice p valid =
     if      (price p < 0) then return (Failure "negative price")
     else if (price p > 9999) then return (Failure "price max reached")
     else valid
+
+deletePriceByUid :: DatabaseConnection -> Int -> IO (Int)
+deletePriceByUid dbc@(SqlConnection {}) uid = 
+    sqlExec dbc
+    ( "DELETE FROM " ++ table ++
+    " WHERE UserID = ?") [ toSql $ uid ]
+
 
 
 getPriceByUid :: DatabaseConnection -> Int -> IO (Maybe Price)

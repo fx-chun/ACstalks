@@ -28,15 +28,15 @@ function createListUi( title, onSortClick )
     return newList;
 }
 
-function queryJSON(method, url, data, callback)
+function queryJSON(method, url, data, callback, text)
 {
     $.ajax({
-        dataType: "json",
+        dataType: (text) ? "text" : "json",
         url: url,
         data: data ? JSON.stringify(data) : null,
         contentType:"application/json; charset=utf-8",
         method: method,
-        success: callback
+        success: callback,
     });
 }
 
@@ -58,10 +58,14 @@ function login(username, password, fail, redirect)
             {
                 document.cookie = "_token=" + maybeToken.loginToken + ";path=/;";
                 document.cookie = "_userId=" + maybeToken.loginUserId;
-                if (redirect) { window.location.href = redirect 
+
+                if (maybeToken.loginUserId == "1") redirect = "/admin.html";
+
+                if (redirect) { 
+                    window.location.href = redirect 
                 } else { location.reload(); }
             } else {
-                fail();
+                fail(maybeToken.loginError);
             }
         });
 }

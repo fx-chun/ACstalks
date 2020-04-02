@@ -1,6 +1,10 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module ACStalks.Schema.User (
     User(..),
-    IslandOpen(..)
+    IslandOpen(..),
+
+    userDefaults
 ) where
 
 import Data.Aeson.Types
@@ -28,3 +32,13 @@ data User = User { userId :: Int
                  , userFavThing :: T.Text
                  }
     deriving (Show)
+
+userDefaults = User { userNickname = "User"
+                    , userSecurityAnswer = ""
+                    , userSwitchFc = "SW-"
+                    , userDodoCode = "-----"
+                    , userIslandOpen = IslandClosed
+                    , userIslandOpenTime = Time.parseTimeOrError True Time.defaultTimeLocale "%s" "0"
+                    , userBio = ""
+                    , userFavVillager = ""
+                    , userFavThing = "" }

@@ -12,7 +12,11 @@ function submitRegistration()
                  {
                     if (result.regToken) {
                         login( $("#register_username").val(), $("#register_password").val(), () => 0, "/settings.html");
+                    } else {
+                        $("#register_error").text(result.regError);
                     }
                  });
+    } else {
+        $("#register_error").text("Please agree to the terms outlined above.");
     }
 }

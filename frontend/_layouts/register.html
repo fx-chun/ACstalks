@@ -22,6 +22,11 @@ input[type="text"], input[type="password"] {
     width: 200px;
     padding-bottom: 10px;
 }
+
+#register_error {
+    color: red;
+    font-size: 12px;
+}
 </style>
 
 <header>
@@ -60,7 +65,8 @@ input[type="text"], input[type="password"] {
 
         <script src="assets/js/register.js"></script>
         <div style="text-align: right; padding: 20px;">
-            <input type="submit" onclick="javascript:submitRegistration();" value="Register"></input>
+            <input type="submit" onclick="javascript:submitRegistration();" value="Register"></input><br/>
+            <span id="register_error"></span>
         </div>
     </form>
 </div>

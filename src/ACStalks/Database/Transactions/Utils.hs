@@ -17,8 +17,8 @@ schema x = (x ++ "_Schema1")
 sqlQuery :: DatabaseConnection -> String -> [SqlValue] -> IO ([[SqlValue]])
 sqlQuery dbc = withWConn (dbConnSqlConnection dbc) quickQuery'
 
-sqlExec :: DatabaseConnection -> String -> [SqlValue] -> IO (Integer)
+sqlExec :: DatabaseConnection -> String -> [SqlValue] -> IO (Int)
 sqlExec dbc query vals = do
     n <- withWConn (dbConnSqlConnection dbc) run query vals
     commit (dbConnSqlConnection dbc)
-    return n
+    return (fromIntegral n)

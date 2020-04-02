@@ -9,7 +9,7 @@ import ACStalks.Schema
 import Control.Monad
 import Control.Monad.IO.Class
 import Crypto.BCrypt
-import Data.Aeson.Types
+import Data.Aeson hiding (Success)
 import qualified Data.ByteString.Char8 as B
 import qualified Data.Text as T
 import qualified Data.Time as Time
@@ -57,7 +57,7 @@ userServer dbc = login :<|> register :<|> search
         login :: RequestLogin -> Handler ResponseLogin 
         login req = liftIO $ 
             do
-                maybeUser <- getUserByUsername dbc (loginUsername req)
+                maybeUser <- getUserByUsername dbc (T.toLower $ loginUsername req)
 
                 case maybeUser of
                     Just user -> do 
@@ -67,9 +67,11 @@ userServer dbc = login :<|> register :<|> search
                         if isValid 
                         then do
                             t <- createToken dbc user
-                            return (ResponseLogin (Just $ token t) (Just $ userId user))
-                        else return (ResponseLogin Nothing Nothing)
-                    Nothing   -> return (ResponseLogin Nothing Nothing)
+                            return (ResponseLogin (Just $ token t) 
+                                                  (Just $ userId user)
+                                                  Nothing)
+                        else return (ResponseLogin Nothing Nothing (Just "Invalid password."))
+                    Nothing   -> return (ResponseLogin Nothing Nothing (Just "Invalid username."))
 
         register :: RequestRegister -> Handler ResponseRegister
         register req = liftIO $ validateRegistration $
@@ -77,32 +79,28 @@ userServer dbc = login :<|> register :<|> search
                 now <- Time.getCurrentTime
                 hash <- hashPassword' (regPassword req)
                 
-                let newUser = User { userName           = regUsername req
-                                   , userNickname       = regNickname req
-                                   , userPasshash       = hash 
-                                   , userSecurityAnswer = T.pack ""
-                                   , userSwitchFc       = T.pack ""
-                                   , userDodoCode       = T.pack ""
-                                   , userIslandOpen     = IslandClosed
-                                   , userIslandOpenTime = now
-                                   , userBio            = T.pack ""
-                                   , userFavVillager    = T.pack ""
-                                   , userFavThing       = T.pack "" } -- TODO defaults?
-                insertUser dbc newUser
-                maybeUser <- getUserByUsername dbc (regUsername req)
- 
-                case maybeUser of
-                   Just user -> do
-                       t <- createToken dbc user
-                       return (ResponseRegister (Just $ token t))
-                   Nothing -> do return (ResponseRegister Nothing)
+                let newUser = userDefaults { userName           = regUsername req
+                                           , userNickname       = regNickname req
+                                           , userPasshash       = hash }
+
+                -- putStrLn $ show newUser
+                
+                result <- insertUser dbc newUser
+                putStrLn $ show result
+
+                case result of
+                   Success -> do
+                       return (ResponseRegister (Just $ T.pack "success") Nothing)
+                   Failure f -> do return (ResponseRegister Nothing (Just $ "Registration failure: " ++ f))
             where 
                 validateRegistration success =
                     do
                         result <- validateCaptcha (regCaptcha req)
                         if result
-                        then success
-                        else return (ResponseRegister Nothing)
+                        then do
+                            putStrLn "-- CAPTCHA PASS"
+                            success
+                        else return (ResponseRegister Nothing (Just $ "Could not verify CAPTCHA."))
 
         search :: [Int] -> Handler [ResponseUserSearch]
         search uids = liftIO $
@@ -223,7 +221,8 @@ data RequestLogin = RequestLogin { loginUsername :: T.Text
     deriving Generic
 
 data ResponseLogin = ResponseLogin { loginToken :: Maybe T.Text
-                                   , loginUserId :: Maybe Int }
+                                   , loginUserId :: Maybe Int
+                                   , loginError :: Maybe String }
     deriving Generic
 
 instance FromJSON RequestLogin 
@@ -236,7 +235,8 @@ data RequestRegister = RequestRegister { regUsername :: T.Text
                                        , regCaptcha :: T.Text }
     deriving Generic
 
-data ResponseRegister = ResponseRegister { regToken :: Maybe T.Text }
+data ResponseRegister = ResponseRegister { regToken :: Maybe T.Text
+                                         , regError :: Maybe String }
     deriving Generic
 
 instance FromJSON RequestRegister

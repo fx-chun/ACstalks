@@ -2,7 +2,7 @@ module ACStalks.Database.Transactions.User (
     getUser,
     getUserByUsername,
     updateUser,
-    deleteUser,
+    deleteUserByUid,
     insertUser
 ) where
 
@@ -29,8 +29,8 @@ userConstructor user = User { userName            = fromSql $ (user !! 0)
 
 validateUser :: User -> IO (Status) -> IO (Status)
 validateUser user valid =     
-    if (T.length $ userName user) < 0 then return (Failure "username is empty")
-    else if not $ 0 == length (map C.isAlphaNum $ T.unpack $ userName user) then return (Failure "username is not alphanum")
+    if (T.length $ userName user) == 0 then return (Failure "username is empty")
+    else if length (filter (not . C.isAlphaNum) $ T.unpack $ userName user) > 0 then return (Failure "username is not alphanum")
     else valid
 
 getUser :: DatabaseConnection -> Int -> IO (Maybe User)
@@ -61,7 +61,7 @@ getUserByUsername dbc@(SqlConnection {}) username =
                     \ IslandOpen, IslandOpenTime, Bio,          \
                     \ FavVillager, FavThing, UserID             \
                     \  FROM " ++ table ++ " WHERE Username = ?;")
-                   [ toSql username ] 
+                   [ toSql $ T.toLower username ] 
 
         if (length results == 0) 
         then return Nothing
@@ -104,13 +104,13 @@ updateUser dbc@(SqlConnection {}) user = validateUser user $
         then return (Success)
         else return (Failure "")
 
-deleteUser :: DatabaseConnection -> User -> IO (Status)
-deleteUser dbc@(SqlConnection {}) usr =
+deleteUserByUid :: DatabaseConnection -> Int -> IO (Status)
+deleteUserByUid dbc@(SqlConnection {}) uid =
     do
         rows <- sqlExec dbc
-                (  "DELETE FROM" ++ table ++ "    \
+                (  "DELETE FROM " ++ table ++ "    \
                  \  WHERE UserID = ?;")
-                [ toSql $ userId usr ]
+                [ toSql $ uid ]
         
         if rows > 0  
         then return (Success)
@@ -140,7 +140,7 @@ insertUser dbc@(SqlConnection {}) user = validateUser user $
                           \  FavVillager,            \
                           \  FavThing                \
                           \) VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?);")
-                        [ toSql $ userName user
+                        [ toSql $ T.toLower $ userName user
                         , toSql $ userNickname user
                         , toSql $ userPasshash user
                         , toSql $ userSecurityAnswer user
