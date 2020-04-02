@@ -28,15 +28,24 @@ function createListUi( title, onSortClick )
     return newList;
 }
 
+var loading = 0;
+
 function queryJSON(method, url, data, callback, text)
 {
+    $(".loading").removeClass("template")
+    loading++;
     $.ajax({
         dataType: (text) ? "text" : "json",
         url: url,
         data: data ? JSON.stringify(data) : null,
         contentType:"application/json; charset=utf-8",
         method: method,
-        success: callback,
+        success: function (...args) { 
+            loading--;
+
+            if (loading == 0) $(".loading").addClass("template");
+            callback(...args);
+        },
     });
 }
 
