@@ -1,5 +1,10 @@
 function submitRegistration()
 {
+    if (!$("form")[0].checkValidity()) {
+        $("#register_error").text("Please fix the form errors.");
+        return
+    }
+
     if ($("#agreement").prop("checked")) {
         queryJSON("POST", "/api/user/register",
                  {

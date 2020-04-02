@@ -2,6 +2,10 @@ if (!isLoggedIn()) window.location.href="/";
 
 function saveSettings()
 {
+    if (!$("form")[0].checkValidity()) {
+        alert("Please fix the form errors.");
+    }
+
     if ($("#settings_password").val() && !($("#settings_password_confirm").val())) {
         alert("Please confirm your password.");
         return;
