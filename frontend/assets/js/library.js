@@ -313,7 +313,7 @@ function updatePriceUi( listUi, sortDesc )
 {
     var sortParam = sortDesc ? "desc" : "asc";
 
-    queryJSON("GET", "/api/market/top?sort=" + sortParam + "&n=10", null, function (prices)
+    queryJSON("GET", "/api/market/top?sort=" + sortParam + "&n=100", null, function (prices)
         {
             console.log(prices);
 
@@ -353,7 +353,7 @@ function updatePriceUi( listUi, sortDesc )
 
 function updateHotItemUi( listUi, sortAlpha )
 {
-    queryJSON("GET", "/api/hotitem/rand?n=10", null, function (items)
+    queryJSON("GET", "/api/hotitem/rand?n=50", null, function (items)
         {
             userIds = new Array(); 
             for (item of items) {
