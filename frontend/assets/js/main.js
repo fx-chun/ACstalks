@@ -22,7 +22,7 @@ hotItemList.appendTo("#main_hotlist");
 function updateTimeLoop()
 {
     var time = moment();
-    var timeString = time.format(""); 
+    var timeString = time.format("dddd, MMMM Do YYYY, h:mm:ss a"); 
 
     $(".currentTime").val(timeString);
     $(".localMarketStatus").css("background-color", "#d1d1d1");
