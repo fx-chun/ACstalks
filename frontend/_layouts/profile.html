@@ -36,6 +36,15 @@ div.dialog > div {
     text-decoration: line-through;
 }
 
+.profile_islandopen {
+    background: none; 
+}
+
+.islandopen_open    { color: #4ed961; }
+.islandopen_friends { color: #f8b833; }
+.islandopen_seebio  { color: #799ed5; }
+.islandopen_closed  { color: #e46465; }
+/* TODO */
 </style>
 
 <div id="profile_container">
@@ -45,14 +54,15 @@ div.dialog > div {
         </div>
     </div>
 
-    <div class="dialog" style="height: 260px;">
+    <div class="dialog" style="height: 320px;">
         <span>Information</span>
         <div style="">
             <b>Favorite Villager:</b> <br/><span class="fav_field profile_favvillager"></span>
             <br/><br/>
             <b>Favorite Thing:</b> <br/><span class="fav_field profile_favthing"></span>
             <br/><br/>
-            <b>Switch Friend Code:</b> <br/><span class="fav_field profile_switchfc"></span>
+            <b>Switch Friend Code:</b> <br/><span class="fav_field profile_switchfc"></span><br/><br/>
+            My island is <span class="profile_islandopen"></span>
         </div>
     </div>
 

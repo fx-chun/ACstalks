@@ -15,6 +15,25 @@ function populateProfile( userId ) {
         $(".profile_favvillager").text(favvillager);
         $(".profile_favthing").text(favthing);
         $(".profile_switchfc").text(switchfc);
+
+        var islandText;
+
+        switch (user.searchIslandOpen) {
+            case "IslandOpen":
+                islandText = ["open to the public.", "islandopen_open"];
+                break;
+            case "IslandFriends":
+                islandText = ["open to friends only.", "islandopen_friends"];
+                break;
+            case "IslandSeeBio":
+                islandText = ["open. See my bio!", "islandopen_seebio"];
+                break;
+            case "IslandClosed":
+                islandText = ["closed.", "islandopen_closed"];
+                break;
+        }
+
+        $(".profile_islandopen").text(islandText[0]).addClass(islandText[1]);
     });
 
     queryJSON("GET", "/api/market/user?id=" + userId, null, (price) => {
