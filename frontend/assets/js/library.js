@@ -141,11 +141,11 @@ function getPriceMarketStatus( price ) {
     var maeHoursEnd    = _maeHoursEnd(priceTime); 
 
     if (priceTime.isBetween(nookHoursStart, nookHoursEnd) && (priceTime.day() != 0)) {
-        return "SELLING";
+        return "SELL FOR";
     }
 
     if (priceTime.isBetween(maeHoursStart, maeHoursEnd) && (priceTime.day() == 0)) {
-        return "BUYING";
+        return "BUY FOR";
     }
 
     return "CLOSED";
