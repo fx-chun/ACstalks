@@ -1,8 +1,8 @@
 name:                ACStalks
-version:             0.1.0.0
--- synopsis:
+version:             1.0.0
+synopsis:            Turnip price and hot items exchange for AC:NH.
 -- description:
--- homepage:            https://github.com/githubuser/ACStalks
+homepage:            https://acstalks.com
 -- license:             
 -- license-file:        LICENSE
 author:              Andy Chun (@noneucat) 
@@ -86,6 +86,6 @@ test-suite ACStalks-test
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
--- source-repository head
---   type:     git
---   location: https://github.com/githubuser/ACStalks
+source-repository head
+   type:     git
+   location: gitea@gitea.lolc.at:ACstalks/acstalks.git
