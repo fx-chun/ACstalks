@@ -196,10 +196,8 @@ userServer dbc = login :<|> register :<|> search
             where
                 post' usr =
                     do
-                        now <- Time.getCurrentTime 
-
                         insertPrice dbc Price { price           = reqPrice req
-                                              , priceTime       = now
+                                              , priceTime       = reqPriceTime req
                                               , priceTimezone   = reqPriceTimezone req
                                               , priceUserId     = userId usr }
 
@@ -262,6 +260,7 @@ instance FromJSON RequestUpdate
 
 data RequestPrice = RequestPrice { reqPriceToken    :: T.Text
                                  , reqPrice         :: Int
+                                 , reqPriceTime     :: Time.UTCTime
                                  , reqPriceTimezone :: Time.TimeZone }
     deriving Generic
 
