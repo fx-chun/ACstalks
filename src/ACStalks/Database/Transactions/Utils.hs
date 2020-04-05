@@ -12,7 +12,7 @@ import Database.HDBC
 data Status = Success | Failure String 
     deriving (Show)
 
-schema x = (x ++ "_Schema1")
+schema x = (x ++ "_Schema2")
 
 sqlQuery :: DatabaseConnection -> String -> [SqlValue] -> IO ([[SqlValue]])
 sqlQuery dbc = withWConn (dbConnSqlConnection dbc) quickQuery'
