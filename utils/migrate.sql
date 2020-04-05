@@ -86,10 +86,13 @@ CREATE TABLE IF NOT EXISTS Users_Schema2 (
     IslandOpenTime datetime NOT NULL,
     Bio varchar(512) NOT NULL,
     FavVillager varchar(255) NOT NULL,
-    FavThing varchar(255) NOT NULL
+    FavThing varchar(255) NOT NULL,
+    
+    -- new
+    NativeFruit varchar(255) NOT NULL 
 );
 
-INSERT INTO Users_Schema2 SELECT * FROM Users_Schema1;
+INSERT INTO Users_Schema2 SELECT *, "n/a" FROM Users_Schema1;
 DROP TABLE Users_Schema1;
 
 

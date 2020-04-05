@@ -118,7 +118,8 @@ userServer dbc = login :<|> register :<|> search
                                        , searchIslandOpenTime = userIslandOpenTime usr 
                                        , searchBio = userBio usr  
                                        , searchFavVillager = userFavVillager usr  
-                                       , searchFavThing = userFavThing usr } 
+                                       , searchFavThing = userFavThing usr
+                                       , searchNativeFruit = userNativeFruit usr } 
  
         update :: RequestUpdate -> Handler String 
         update req = liftIO $ validate' (reqUpdateToken req) (return "false") update' 
@@ -174,10 +175,13 @@ userServer dbc = login :<|> register :<|> search
                         Nothing  -> usr
 
                 favUpdater usr req = return $
-                    usr { userFavVillager = (fromMaybe . T.pack $ "No one") 
+                    usr { userFavVillager = (fromMaybe $ userFavVillager userDefaults) 
                                             (reqUpdateFavVillager req)
-                        , userFavThing    = (fromMaybe . T.pack $ "Nothing")    
-                                            (reqUpdateFavThing req) }
+                        , userFavThing    = (fromMaybe $ userFavThing userDefaults)    
+                                            (reqUpdateFavThing req) 
+                        , userNativeFruit = (fromMaybe $ userNativeFruit userDefaults)
+                                            (reqUpdateNativeFruit req)
+                        }
 
                 update' :: User -> IO (String)
                 update' usr = 
@@ -250,7 +254,8 @@ data RequestUpdate = RequestUpdate { reqUpdateToken    :: T.Text
                                    , reqUpdateIslandOpen :: Maybe IslandOpen
                                    , reqUpdateBio      :: Maybe T.Text
                                    , reqUpdateFavVillager :: Maybe T.Text
-                                   , reqUpdateFavThing :: Maybe T.Text }
+                                   , reqUpdateFavThing :: Maybe T.Text
+                                   , reqUpdateNativeFruit :: Maybe T.Text }
     deriving Generic
 
 instance FromJSON RequestUpdate
@@ -279,7 +284,8 @@ data ResponseUserSearch = ResponseUserSearch{ searchId       :: Int
                                             , searchIslandOpenTime :: Time.UTCTime
                                             , searchBio :: T.Text 
                                             , searchFavVillager :: T.Text
-                                            , searchFavThing :: T.Text }
+                                            , searchFavThing :: T.Text
+                                            , searchNativeFruit :: T.Text }
     deriving Generic
 
 instance ToJSON ResponseUserSearch

@@ -22,7 +22,8 @@ main = do
                              , userIslandOpenTime = now
                              , userBio = ""
                              , userFavVillager = ""
-                             , userFavThing = "" })
+                             , userFavThing = ""
+                             , userNativeFruit = "" })
 
     result2 <- getUser dbc 1
     

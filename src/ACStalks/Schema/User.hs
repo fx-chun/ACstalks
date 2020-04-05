@@ -30,6 +30,7 @@ data User = User { userId :: Int
                  , userBio :: T.Text
                  , userFavVillager :: T.Text
                  , userFavThing :: T.Text
+                 , userNativeFruit :: T.Text
                  }
     deriving (Show)
 
@@ -41,4 +42,5 @@ userDefaults = User { userNickname = "User"
                     , userIslandOpenTime = Time.parseTimeOrError True Time.defaultTimeLocale "%s" "0"
                     , userBio = ""
                     , userFavVillager = "No one"
-                    , userFavThing = "Nothing" }
+                    , userFavThing = "Nothing"
+                    , userNativeFruit = "n/a" }

@@ -6,12 +6,14 @@ function populateProfile( userId ) {
 
         var nick = user.searchNickname;
         var bio = user.searchBio;
+        var nativefruit = user.searchNativeFruit;
         var favvillager = user.searchFavVillager;
         var favthing = user.searchFavThing;
         var switchfc = user.searchSwitchFc;
 
         $(".profile_nickname").text(nick);
         $(".profile_bio").text(bio);
+        $(".profile_nativefruit").text(nativefruit);
         $(".profile_favvillager").text(favvillager);
         $(".profile_favthing").text(favthing);
         $(".profile_switchfc").text(switchfc);

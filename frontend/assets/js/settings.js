@@ -23,7 +23,8 @@ function saveSettings()
         "reqUpdateSwitchFc" : $("#settings_switchfc").val(),
         "reqUpdateBio"      : $("#settings_bio").val(),
         "reqUpdateFavVillager" : $("#ac-select").val(),
-        "reqUpdateFavThing" : $("#ac-select-2").val()
+        "reqUpdateFavThing" : $("#ac-select-2").val(),
+        "reqUpdateNativeFruit" : $("#ac-select-3").val()
     };
 
     queryJSON("POST", "/api/user/update", query, (a) =>
