@@ -174,7 +174,7 @@ userServer dbc = login :<|> register :<|> search
                         Nothing  -> usr
 
                 favUpdater usr req = return $
-                    usr { userFavVillager = (fromMaybe . T.pack $ "Bob") 
+                    usr { userFavVillager = (fromMaybe . T.pack $ "No one") 
                                             (reqUpdateFavVillager req)
                         , userFavThing    = (fromMaybe . T.pack $ "Nothing")    
                                             (reqUpdateFavThing req) }

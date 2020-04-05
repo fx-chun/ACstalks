@@ -40,5 +40,5 @@ userDefaults = User { userNickname = "User"
                     , userIslandOpen = IslandClosed
                     , userIslandOpenTime = Time.parseTimeOrError True Time.defaultTimeLocale "%s" "0"
                     , userBio = ""
-                    , userFavVillager = ""
-                    , userFavThing = "" }
+                    , userFavVillager = "No one"
+                    , userFavThing = "Nothing" }
