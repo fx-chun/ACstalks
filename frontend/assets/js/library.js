@@ -103,13 +103,13 @@ function updatePrice(price) {
         }
     }
 
-    console.log(time.format("LLLL"));
+    //console.log(time.format("LLLL"));
 
     queryJSON("POST", "/api/user/price", 
                 { "reqPriceToken"    : token
                 , "reqPrice"         : price
                 , "reqPriceTime"     : time.toISOString()
-                , "reqPriceTimezone" : timezone }, () => { return } /*location.reload()*/);
+                , "reqPriceTimezone" : timezone }, () => location.reload());
 }
 
 function updateItem(item) {
