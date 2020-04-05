@@ -55,7 +55,8 @@ textarea {
             <br/><br/>
 
             <label for="settings_bio">Bio:</label><br/>
-            <textarea cols='80' rows='16' class="my_bio_input" id="settings_bio"> </textarea>
+            <textarea cols='80' rows='16' class="my_bio_input" id="settings_bio"> </textarea><br/>
+            {% include markdown_guide.html %} 
 
             <div style="text-align: right;">
                 <input onclick="saveSettings();" type="submit" value="Save Changes"></input>

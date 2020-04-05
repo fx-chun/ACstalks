@@ -4,15 +4,20 @@ function populateProfile( userId ) {
     queryJSON("POST", "/api/user/search?", [ userId ], (users) => {
         user = users[0];
 
+        var md = window.markdownit({
+            html: false,
+            linkify: true,
+            typographer: true 
+        });
         var nick = user.searchNickname;
-        var bio = user.searchBio;
+        var bio = md.render(user.searchBio);
         var nativefruit = user.searchNativeFruit;
         var favvillager = user.searchFavVillager;
         var favthing = user.searchFavThing;
         var switchfc = user.searchSwitchFc;
 
         $(".profile_nickname").text(nick);
-        $(".profile_bio").text(bio);
+        $(".profile_bio").html(bio);
         $(".profile_nativefruit").text(nativefruit);
         $(".profile_favvillager").text(favvillager);
         $(".profile_favthing").text(favthing);

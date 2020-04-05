@@ -38,7 +38,24 @@ div.dialog > div {
 
 .profile_bio {
     white-space: pre-wrap;
+    max-width: 60%;
+}
+
+@media only screen and (max-width: 500px) {
+    .profile_bio {
+        max-width: 100%;
+    }
+}
+
+.profile_bio p {
+    margin: 0;
     overflow-wrap: break-word;
+}
+
+.profile_bio h1,h2,h3 {
+    font-size: 20px;
+    color: #606060;
+    margin: 0;
 }
 
 .profile_islandopen {
@@ -180,5 +197,5 @@ div.dialog > div {
 </div>
 
 <br/><br/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"></script>
 <script src="/assets/js/profile.js"></script>
