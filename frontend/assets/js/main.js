@@ -19,6 +19,17 @@ var hotItemList = createListUi( "Item List", () => {
 priceList.appendTo("#main_pricelist");
 hotItemList.appendTo("#main_hotlist");
 
+function timetravelerUpdateUi()
+{
+    if ($('#timetraveler_check').is(":checked")) { 
+        $(".timetraveler").removeClass("template"); 
+        $(".not_timetraveler").addClass("template"); 
+    } else { 
+        $(".timetraveler").addClass("template"); 
+        $(".not_timetraveler").removeClass("template"); 
+    }
+}
+
 function updateTimeLoop()
 {
     var time = moment();
@@ -41,6 +52,7 @@ function updateTimeLoop()
 
 }
 
+timetravelerUpdateUi();
 updatePriceUi(priceList, priceListSortDesc);
 updateHotItemUi(hotItemList, hotItemSortAlpha);
 updateTimeLoop();

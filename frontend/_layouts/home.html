@@ -66,7 +66,7 @@ layout: default
 <div id="prices_container">
     <div id="main_pricelist"></div>
     <div id="sidebar_container">
-        <div id="priceDialog" class="template dialog logged_in" style="height: 250px">
+        <div id="priceDialog" class="template dialog logged_in" style="height: 320px">
             <span>Price Update</span>
             <div>
                 <form onsubmit="return false;" id="priceUpdate">
@@ -81,8 +81,15 @@ layout: default
                         <span id="indicator_sell" class="localMarketStatus">SELL</span>
                         <span id="indicator_closed" class="localMarketStatus">CLOSED</span>
                         <br/>
-                        <label style="display: none;" for="currentTime">Current Time</label>
-                        <input class="currentTime" style="margin: 10px 0px 10px 0px;" type="textbox" disabled></input>
+                        <div class="timetraveler template">
+                            <i style="font-family: Arial; font-size: 14px;">Greetings, time traveler. Select your present date and time:</i> <br/>
+                            <input id="timetraveler_date" type="date"></input> <br/>
+                            <input id="timetraveler_time" type="time"></input>
+                        </div>
+                        <div class="not_timetraveler">
+                            <input class="currentTime" style="margin: 10px 0px 10px 0px;" type="textbox" disabled></input>
+                        </div>
+                        <input id="timetraveler_check" type="checkbox" onclick="timetravelerUpdateUi()"></input><b style="font-family: Arial; font-size: 14px;">Time traveler...?</b>
                     </div>
                 </form>
             </div>

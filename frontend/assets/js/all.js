@@ -23,6 +23,8 @@ if (isLoggedIn()) {
         $(".my_dodocode_input").val(usr.searchDodoCode);
         $(".my_switchfc").text(usr.searchSwitchFc);
         $(".my_switchfc_input").val(usr.searchSwitchFc);
+        $(".my_nativefruit").text(usr.searchNativeFruit);
+        $(".my_nativefruit_input").val(usr.searchNativeFruit);
         $(".my_favvillager").text(usr.searchFavVillager);
         $(".my_favvillager_input").val(usr.searchFavVillager);
         $(".my_favthing").text(usr.searchFavThing);

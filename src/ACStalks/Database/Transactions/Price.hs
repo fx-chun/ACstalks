@@ -50,7 +50,7 @@ getPriceByUid dbc@(SqlConnection {}) uid =
                     \ PriceID, Price, PriceTime,                \
                     \ PriceTimezone, UserID                     \
                     \ FROM " ++ table ++ " WHERE UserID = ?     \
-                    \ ORDER BY PriceTime DESC")
+                    \ ORDER BY PriceID DESC")
                    [ toSql $ uid ] 
 
         if (length results == 0) 
@@ -64,9 +64,9 @@ getNPrices dbc@(SqlConnection {}) n o =
         results <- sqlQuery dbc
                    [i| 
 
-SELECT PriceID
+SELECT MAX(PriceID)
      , Price
-     , MAX(PriceTime) 
+     , PriceTime
      , PriceTimezone
      , UserID
 FROM #{table}

@@ -86,11 +86,29 @@ function logout()
 }
 
 function updatePrice(price) {
+    var time = moment();
     var timezone = (new Date()).getTimezoneOffset();
+
+    if ($('#timetraveler_check').is(":checked")) {
+        var timeString = $("#timetraveler_date").val() + " " + $("#timetraveler_time").val();
+
+        $("#timetraveler_date").val("");
+        $("#timetraveler_time").val("");
+
+        time = moment(timeString, "YYYY-MM-DD HH:mm");
+
+        if (!time.isValid()) {
+            alert("Invalid time.");
+            return;
+        }
+    }
+
+    //console.log(time.format("LLLL"));
 
     queryJSON("POST", "/api/user/price", 
                 { "reqPriceToken"    : token
                 , "reqPrice"         : price
+                , "reqPriceTime"     : time.toISOString()
                 , "reqPriceTimezone" : timezone }, () => location.reload());
 }
 

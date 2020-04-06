@@ -44,12 +44,12 @@ searchHotItems dbc@(SqlConnection {}) str =
     do
         results <- sqlQuery dbc
                    ( "SELECT                                    \
-                    \ HotItemID, HotItem, MAX(HotItemTime),     \
+                    \ MAX(HotItemID), HotItem, HotItemTime,     \
                     \ HotItemTimezone, UserID                   \
                     \ FROM " ++ table ++ "                      \
                     \ WHERE HotItem LIKE ?                      \
                     \ GROUP BY UserId                           \
-                    \ ORDER BY HotItemTime                      \
+                    \ ORDER BY HotItemID DESC                   \
                     \ LIMIT 10;") [ toSql $ T.pack . (\x -> "%" ++ x ++ "%") . T.unpack $ T.toLower str ]
         return (map hotItemConstructor results) 
 
@@ -58,11 +58,11 @@ getNRandomHotItems dbc@(SqlConnection {}) n =
     do
         results <- sqlQuery dbc
                    ( "SELECT                                    \
-                    \ HotItemID, HotItem, MAX(HotItemTime) as HotItemTime,     \
+                    \ MAX(HotItemID) as HotItemID, HotItem, HotItemTime,          \
                     \ HotItemTimezone, UserID                   \
                     \ FROM " ++ table ++ "                      \
                     \ GROUP BY UserID                           \ 
-                    \ ORDER BY HotItemTime LIMIT " ++ show n ++ ";") []
+                    \ ORDER BY HotItemID DESC LIMIT " ++ show n ++ ";") []
         return (map hotItemConstructor results) 
  
 insertHotItem :: DatabaseConnection -> HotItem -> IO (Status)
